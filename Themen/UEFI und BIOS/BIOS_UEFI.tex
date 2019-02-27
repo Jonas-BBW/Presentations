@@ -1,0 +1,223 @@
+% Schriftgröße = 9 Punkt, Dokumentenklasse für Präsentationen
+\documentclass[9pt]{beamer}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Standardpakete
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% zusätzliche Pakete
+\usepackage[sfdefault]{roboto}
+\usepackage{hyperref}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% selbsterstellte Befehle
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}       % Stichpunkte in Tabellen
+\newcommand{\tabspace}{~~\llap{\vphantom{ } }~~}    % Abstand für weitere Zeilen eines Stichpunktes
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{styles/fluxmacros}
+\usefolder{styles}
+% Möglichkeiten: asphalt, blue, red, green, gray
+\usetheme[style=asphalt]{flux}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informationen
+\title{BIOS und UEFI}
+\subtitle{}
+\author{Jonas Schönbach, Christopher Walther und Marius Niesler}
+\institute{SRH Berufsbildungswerk Dresden}
+\date{\today}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{document}
+    \titlepage
+
+    \begin{frame}
+        \frametitle{Gliederung}
+        \tableofcontents
+    \end{frame}
+    
+    \section{UEFI vs. BIOS}
+    \subsection{Basic Input/Output System}
+        \begin{frame}{UEFI vs. BIOS}{BIOS}
+            \begin{itemize}
+                \item ist Schnittstelle zwischen Hardware und Betriebssystem
+                \item führt Power-On Self-Test (POST) durch
+                \item seit Jahren veraltet, hat nur 1MB Speicher
+                \begin{itemize}
+                    \item[$\rightarrow$] Starten vieler Peripheriegeräte schwierig
+                \end{itemize}
+                \item verwendet Master Boot Record
+                \begin{itemize}
+                    \item[$\rightarrow$] von Festplatten mit mehr als 2,2TB booten unmöglich
+                \end{itemize}
+                \item sehr limitierter Funktionsumfang
+                \item startet ersten Boot Loader unter Berücksichtigung der Bootpriorität 
+                \item Bedienung nur mit Tastatur
+                \item bei Systemen mit 64bit-Architektur fast vollständig von UEFI abgelöst
+            \end{itemize}
+    \end{frame}
+    
+    \subsection{Unified Extensible Firmware Interface}
+        \begin{frame}{UEFI vs. BIOS}{UEFI}
+            \begin{itemize}
+                \item verwendet „Globally Unique Identifier“-Partitionstabelle
+                \item kann mit bis zu 9.4ZB umgehen,\\Größe des Internets wird auf ca. 3ZB geschätzt
+                \item ist als kleines Betriebssystem zu verstehen\\(Browser, RAM-Test, … möglich)
+                \item Bedienung mit Maus und Tastatur möglich
+                \item aufwendige, graphische Benutzeroberfläche und hohe Auflösungen
+                \item Updates unkompliziert
+                \item Dateien befinden auf der Festplatte in Partition „/boot/EFI/“, Netzwerk, ...
+                \item kein ROM verwendet
+            \end{itemize}
+        \end{frame}
+
+    \section{Geschichte}
+        \subsection{BIOS}
+            \begin{frame}{Geschichte}{Entwicklung des BIOS}
+                \begin{itemize}
+                    \item erstes BIOS 1975 für Betriebssystem CP/M von Gary A. Kildall entwickelt
+                	\item 1981 beginnt IBM mit dem ersten IBM-PC; BIOS wird weiterentwickelt
+                	\item alte Betriebssysteme griffen auf BIOS zu, um angeschlossene Hardware anzusprechen
+                	\item mittlerweile nur noch für Systemstart zuständig
+                	\item BIOS ist auf einem EEPROM oder Flash-Speicher gespeichert
+                	\begin{itemize}
+                		\item wird auf Motherboard verlötet oder sitzt in einem Sockel
+                	\end{itemize}
+                \end{itemize}
+            \end{frame}
+
+            \begin{frame}{Geschichte}{Entwicklung des BIOS - Read Only Memory}
+                \begin{itemize}
+                    \item permanenter Halbleiterspeicher
+                    \item Daten werden dauerhaft und meist unveränderlich gespeichert
+                    \item enthalten Betriebssysteme, Anwendungsprogramme und Firmware
+                    \item werden in der Regel nicht an die Platine gelötet
+                    \begin{itemize}
+                        \item[$\rightarrow$] meistens in Sockel gesteckt (Austauschbarkeit)
+                    \end{itemize}
+                    \item heute dienen Flash-Speicher als ROM Ersatz
+                    \item Flash-Speicher ist überschreibbar, auch während des Betriebes
+                    \item ROM mittlerweile nur verwendet wenn Änderung des Speicherinhalts unerwünscht
+                \end{itemize}
+            \end{frame}
+
+        \subsection{UEFI}
+            \begin{frame}{Geschichte}{UEFI}
+                \begin{itemize}
+                    \item 1998: Intel startet Entwicklung des \textbf{EFI} (\textbf{E}xtensible \textbf{F}irmware \textbf{I}nterface)
+                    \item 2007: IT-Unternehmen wie Intel, AMD,  Apple, IBM, Lenovo, Microsoft entschieden \textbf{EFI} als einheitlichen „Nachfolger“ für das BIOS
+                    \item Begriff \enquote{UEFI} (\textbf{U}nified \textbf{E}xtensible \textbf{F}irmware \textbf{I}nterface) entstand
+                \end{itemize}
+            \end{frame}
+
+    \section{Verschiedenes}
+    
+        \subsection{UEFI Shell}
+        \begin{frame}{Verschiedenes}{UEFI Shell}
+            \begin{itemize}
+                \item textbasierte Benutzerschnittstelle
+                \item kann direkt vom UEFI anstelle des Betriebssystems gestartet werden
+                \item ermöglicht Arbeiten in Ebene zwischen UEFI und Betriebssystem
+                \begin{itemize}
+                    \item[$\rightarrow$] das Erstellen und Ausführen von Skripten, die den Bootvorgang\\beeinflussen möglich
+                    \item[$\rightarrow$] über Shell können Betriebssysteme installiert werden
+                \end{itemize}
+                
+            \end{itemize}
+        \end{frame}
+
+    \subsection{Power-On-Self-Test}
+        \begin{frame}{Verschiedenes}{Power-On-Self-Test}
+        \begin{itemize}
+            \item erstes Programm, das ein Computer ausführt
+            \item überprüft grundlegende Komponenten des Computer auf Funktionsfähigkeit
+        \end{itemize}
+        \begin{exampleblock}{Ablauf}
+            \begin{enumerate}
+                \item Überprüfung der Funktionsfähigkeit der CPU\\
+                \item Überprüfung der CPU-nahen Bausteine
+                \item Überprüfung des CMOS-RAM
+                \item Überprüfung des CPU-nahen Cache-Speichers
+                \item Überprüfung der ersten 64 Kilobyte des Arbeitsspeichers
+                \item Überprüfung des Grafik-Speichers und der Grafik-Ausgabe-Hardware/Software
+                \item Grafikkarte wird in Betrieb genommen
+                \item Überprüfung des restlichen Arbeitsspeichers 
+                \item Überprüfung der Tastatur (PS/2-Schnittstelle)
+                \item Überprüfung von weiterer Peripherie, u. a. Diskettenlaufwerke und Festplatten
+            \end{enumerate}
+        \end{exampleblock}
+        \end{frame}
+        
+        \subsection{Compatibility Support Module}
+        \begin{frame}{Verschiedenes}{Compatibility Support Module}
+            \begin{itemize}
+                \item benötigt für Unterstützung alter (32bit-)Betriebssysteme und alter Hardware
+                \item emuliert BIOS
+                \item ermöglicht Boot von MBR-partitionierten Festplatten
+                \item Intel unterstützt CSM nur noch bis 2020 (Bekanntgabe: November 2017)
+            \end{itemize}
+        \end{frame}
+
+    \subsection{CMOS}
+    \begin{frame}{Verschiedenes}{CMOS}
+        \begin{itemize}
+            \item Abkürzung für \enquote{Complementary Metal Oxide Semiconductor} (komplementärer Metalloxidhalbleiter)
+            \item extrem stromsparende Halbleitertechnologie
+            \item ein SRAM mit dieser Technologie wird als CMOS-RAM bezeichnet
+            \begin{itemize}
+                \item Bestandteil vom jeden PC
+                \item wird nach Abschaltung des Computers von Batterie mit Strom versorgt
+                \begin{itemize}
+                    \item[$\rightarrow$] kein Datenverlust solange Batterie funktionsfähig
+                \end{itemize}
+                \item speichert BIOS-Einstellungen
+                \item enthält keinen direkt ausführbaren Code
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+    
+
+    \begin{frame}{Verschiedenes}{CMOS Reset}
+        \begin{itemize}
+        	\item ist das vorübergehende Entfernen der Flachbatterie vom Mainboard
+        	\item Daten werden dabei gelöscht
+        	\item es gilt zu Beachten:
+        	\begin{itemize}
+        		\item Rechner in jedem Fall ausschalten
+        		\item Rechner vom Stromnetz trennen
+        		\item nach dem entfernen der Batterie 10 - 20 Minuten warten
+        	\end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \section{Quellen}
+        \begin{frame}{Quellen}{}
+            \begin{itemize}
+                \item \href{https://de.wikipedia.org/wiki/Power-on_self-test}{de.wikipedia.org/wiki/Power-on\_{}self-test}
+                \item \href{https://de.wikipedia.org/wiki/BIOS}{de.wikipedia.org/wiki/BIOS}
+                \item \href{https://de.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface}{de.wikipedia.org/wiki/Unified\_{}Extensible\_{}Firmware\_{}Interface}
+                \item \href{https://phoenixts.com/blog/uefi-vs-legacy-bios/}{phoenixts.com/blog/uefi-vs-legacy-bios/}
+                \item \href{https://wiki.ubuntuusers.de/EFI_Grundlagen/}{wiki.ubuntuusers.de/EFI\_{}Grundlagen/}
+                \item \href{https://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface\#CSM_booting}{en.wikipedia.org/wiki/Unified\_{}Extensible\_{}Firmware\_{}Interface\#{}CSM\_{}boot}
+                \item \href{https://www.elektronik-kompendium.de/sites/com/0807131.htm}{https://www.elektronik-kompendium.de/sites/com/0807131.htm}
+                \item \href{https://www.elektronik-kompendium.de/sites/com/0309181.htm}{https://www.elektronik-kompendium.de/sites/com/0309181.htm}
+                \item \href{https://de.wikibooks.org/wiki/Computerhardware:_BIOS:_CMOS}{https://de.wikibooks.org/wiki/Computerhardware:\_{}BIOS:\_{}CMOS}
+                \item \href{https://www.pcwelt.de/tipps/Systemeinstellung-So-setzen-Sie-das-Bios-richtig-zurueck-8136828.html}{https://www.pcwelt.de/tipps/Systemeinstellung-So-setzen-Sie-das-Bios-richtig-zurueck-8136828.html}
+                %\item \href{}{}
+            \end{itemize}
+        \end{frame}
+    \section{UEFI-Vorstellung}
+    
+    \begin{frame}[plain]
+            \begin{center}
+                \huge\textbf{Vielen Dank für Ihre Aufmerksamkeit!}
+            \end{center}
+        \end{frame}
+\end{document}

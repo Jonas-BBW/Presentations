@@ -1,0 +1,390 @@
+% Schriftgröße = 9 Punkt, Dokumentenklasse für Präsentationen
+\documentclass[9pt]{beamer}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Standardpakete
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage[autostyle=true,german=quotes]{csquotes}
+\usepackage[sfdefault]{roboto}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% zusätzliche Pakete
+\usepackage{hyperref}
+%\usepackage{amsmath}       % mathematische Formeln
+%\usepackage{tikz}          % Zeichnungen
+%\usepackage{booktabs}      % für schönere Tabellen
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% selbsterstellte Befehle
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}       % Stichpunkte in Tabellen
+\newcommand{\tabspace}{~~\llap{\vphantom{ } }~~}    % Abstand für weitere Zeilen eines Stichpunktes
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{styles/fluxmacros}
+\usefolder{styles}
+% Möglichkeiten: asphalt, blue, red, green, gray
+\usetheme[style=asphalt]{flux}
+% Der Logo-Befehl darf nicht auskommentiert werden, kann aber freigelassen werden
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Informationen
+\title{DATENSCHUTZ}
+\subtitle{}
+\author{Jonas Schönbach, Christopher Walther und Marius Niesler}
+\institute{SRH Berufsbildungswerk Dresden}
+\date{\today}
+%~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\begin{document}
+    \titlepage
+
+    \begin{frame}
+        \frametitle{Gliederung}
+        \tableofcontents
+    \end{frame}
+
+
+
+    \section{Datenschutz allgemein}
+        \subsection{Geschichte}
+            \begin{frame}{Datenschutz allgemein}{}
+                \centering\huge
+                {
+                   Datenschutz ist der Schutz sämtlicher\\Informationen,
+                   die nicht\\für die Allgemeinheit frei verfügbar sind.
+                }
+            \end{frame}
+            \begin{frame}{Datenschutz allgemein}{Geschichte}
+            \begin{itemize}
+                \item 1960er: Debatte um John F. Kennedy's Nationales Datenzentrum
+                \begin{itemize}
+                    \item scheiterte, gesetzliche Grundlage für die Verarbeitung \\personenbezogener Daten gefordert
+                    \item Ergebnis: Verabschiedung des Privacy Act (1974)
+                \end{itemize}
+                \item in Deutschland wurde Übersetzung für Privacy gesucht
+                \begin{itemize}
+                    \item Begriff Datenschutz entstand (Anlehnung an vorhandenen Maschinenschutz)
+                \end{itemize}
+                \item 1970: Hessen schafft erstes Datenschutzgesetz weltweit
+                \item 1977: Bundesdatenschutzgesetz entstand
+            \end{itemize}
+            \end{frame}
+
+
+        \subsection{wichtige Grundsätze}
+            \begin{frame}{Datenschutz allgemein}{wichtige Grundsätze}
+                \begin{itemize}
+                    \item Grundsatz der Datenvermeidung und Datensparsamkeit\\
+                    \begin{itemize}
+                        \item[$\rightarrow$] nur unbedingt erforderliche Daten sammeln
+                    \end{itemize}
+                    \item Erlaubnisvorbehalt
+                    \begin{itemize}
+                        % mathematische Aussagen kommen in '$'-Zeichen %
+                        \item[$\rightarrow$] Nutzer muss Erhebung, Speicherung oder Verarbeitung seiner Daten
+                        vorher zustimmen (sofern nicht gesetzlich angeordnet)
+                        \item[$\rightarrow$] Erhebung von Daten gegen den Willen des Nutzers / ohne dessen Kenntnis ist nicht zulässig
+                    \end{itemize}
+                    \item Trennungsgrundsatz
+                        \begin{itemize}
+                            \item[$\rightarrow$] mehrere Diensteanbieter dürfen gesammelte Informationen nicht zusammenfügen
+                            \item[$\rightarrow$] Austausch von Daten darf Datensparsamkeit nicht umgehen
+                            \item[$\rightarrow$] Nutzer hat Auskunftsansprüche gegenüber Stellen, die seine Daten sammeln
+                            \item[$\rightarrow$] Nutzer hat Anspruch auf Berichtigung gegenüber Stellen, die seine Daten sammeln bei Unvollständigkeit/Fehlerhaftigkeit
+                        \end{itemize}
+                \end{itemize}
+            \end{frame}
+
+
+        \subsection{Einzelangaben}
+            \begin{frame}{Datenschutz allgemein}{Einzelangaben}
+                \begin{itemize}
+            		\item persönliche oder sachliche Verhältnisse einer Person,\\die ihr zugeordnet werden können\newline
+            	\end{itemize}
+            	\vspace{0.25cm}
+                \centerline{\begin{minipage}{280pt}
+    		        \begin{tabular}{| l | l |}
+            		    \hline
+            		    \textbf{persönliche Verhältnisse} & \textbf{sachliche Verhältnisse}\\
+                        \hline
+            		    \tabitem Name           &   \tabitem Kraftfahrzeugnummer\\
+            		    \tabitem Familienstand  &   \tabitem Kfz-Kennzeichen\\
+            		    \tabitem Geburtsdatum   &   \tabitem Personalausweisnummer\\
+            		    \tabitem Alter          &   \tabitem Sozialversicherungsnummer\\
+            		    \tabitem Anschrift      &   \tabitem Vorstrafen\\
+            		    \tabitem Telefonnummer  &   \tabitem genetische Daten und Krankendaten\\
+                        \tabitem E-Mail Adresse &   \\
+                        \hline
+                    \end{tabular}
+                \end{minipage}}
+            \end{frame}
+
+
+
+    \section{Personenbezogene Daten}
+        \subsection{Bestimmte Personen}
+            \begin{frame}{Personenbezogene Daten}{}
+                \begin{itemize}
+        		    \item sind all jene Informationen, die...\\...sich auf eine natürliche Person beziehen\\...auf eine natürliche Person beziehbar sind\\und so Rückschlüsse auf deren Persönlichkeit erlauben.\newline{}
+        		    \item \textbf{laut DSGVO besonders schützenswert:}\\genetische, biometrische und Gesundheitsdaten, rassische und ethnische Herkunft, politische Meinungen, religiöse oder weltanschauliche Überzeugungen, Gewerkschaftszugehörigkeit
+        	    \end{itemize}
+            \end{frame}
+
+            \begin{frame}{Personenbezogene Daten}{Bestimmte Personen}
+                \begin{itemize}
+            		\item eine Person wird als bestimmte Person definiert, wenn die Daten mit der betroffenen Person verbunden sind
+            		\item Beispiele: Muttermale, Fingerabdruck, Augenfarben, Haarfarbe, Kfz-Kennzeichen, Kontonummer, Personalausweisnummer etc.
+            		\item die Daten können mit Personen verbunden sein
+            		\item aus dem Inhalt wird ein Bezug zu der Person hergestellt
+            	\end{itemize}
+            \end{frame}
+
+
+        \subsection{Bestimmbare Personen}
+            \begin{frame}{Personenbezogene Daten}{Bestimmbare Personen}
+                \begin{itemize}
+            		\item eine Person wird als bestimmbar definiert, wenn sie direkt oder indirekt identifiziert wird
+            		\item die Identität einer Person wurde mit Hilfe von Zusatzwissen identifiziert
+            	\end{itemize}
+            \end{frame}
+
+
+        \subsection{Natürliche Personen}
+            \begin{frame}{Personenbezogene Daten}{Natürliche Personen}
+                \begin{itemize}
+            		\item sind Menschen unserer Bevölkerung mit der Funktion als Rechtssubjekt
+            		\item ist unabhängig von Geschlecht, Herkunft und Staatsangehörigkeit
+            		\item kann nicht von behördlichen oder gerichtlichen Entscheidungen aberkannt werden
+            		\item Träger kann sich auch nicht durch Verzichtserklärungen aufheben oder beschränken
+            		\item sind Träger von Rechten und Pflichten und damit rechtsfähig
+            		\item sie endet mit dem Tod, endgültiger Ausfall des Gehirns
+            		\item neben Rechtsfähigkeit und Nichtrechtsfähigkeit gibt es Teilrechtsfähigkeit
+            		    \begin{itemize}
+                            \item gilt für Nasciturus (ungeborener Mensch)
+                        \end{itemize}
+            	\end{itemize}
+            \end{frame}
+
+
+        \subsection{Juristische Personen}        
+            \begin{frame}{Personenbezogene Daten}{Juristische Personen}
+                \begin{itemize}
+            		\item sind Vereinigungen von Personen oder Sachen
+            		\item rechtlich geregelte Einheit
+            		\item bekamen von der Rechtsordnung die Rechtsfähigkeit
+            		\item sind Träger von eigenen Rechten und Pflichten
+            		\item man unterscheidet zwischen Privatrecht und öffentlichem Recht
+            	\end{itemize}
+            \end{frame}
+
+        \begin{frame}{Personenbezogene Daten}{Juristische Personen - Körperschaften}
+                \begin{itemize}
+            		\item definiert ein Zusammenschluss von Personen
+            		\item Zusammenarbeit auf ein geminsames, nicht individuell, einzelnes Ziel hin
+            		\item Mitglieder können wechseln
+            		\item das angestrebte und erklärte Ziel bleibt gleich
+            		\item Körperschaften sind im juristischen Sinne immer eine juristische Person
+            	\end{itemize}
+            \end{frame}
+
+        \begin{frame}{Personenbezogene Daten}{Juristische Personen - privates Recht}
+                \begin{itemize}
+            		\item sind in der Regel Körperschaften gemeint
+            		\item unabhängig von den Mitgliedern
+            		\item Mehrheitsprinzip
+            		\item Haftung durch Gesellschaftsvermögen
+            		\item Beispiele: GmbH, AG, e.G., Vereine
+            	\end{itemize}
+            \end{frame}
+
+            \begin{frame}{Personenbezogene Daten}{Juristische Personen - öffentliches Recht}
+                    \begin{itemize}
+                		\item in der Regel ebenso Körperschaften
+                		\item sind Bund, Länder und Gemeinden
+                		\item können auch öffentliche Stiftungen, Anstalten und Sparkassen sein
+                		\item Beliehene gelten auch als juristische Personen
+                	\end{itemize}
+                \end{frame}
+
+
+
+    \section{Rechtsgrundlagen und Rechte}
+        \subsection{BDSG}
+            \begin{frame}{Rechtsgrundlagen und Rechte}{Bundesdatenschutzgesetz}
+                \begin{itemize}
+                    \item bildet Datenschutzrahmen in Deutschland
+            		\item regelt mit den Datenschutzgesetzen der Länder den Umgang mit persönlichen Daten in Deutschland
+            		\item Originalfassung vom 27.01.1977
+            		\item letzte Neufassung vom 30.06.2017
+            		\item Inkrafttreten der Neufassung am 25.05.2018
+            	\end{itemize}
+            \end{frame}
+
+
+        \subsection{DSGVO}
+            \begin{frame}{Rechtsgrundlagen und Rechte}{Datenschutzgrundverordnung}
+                \begin{itemize}
+	                \item EU-weite Verordnung zum Schutz von persönlichen Daten
+	                \item bildet Datenschutzrahmen in der EU
+            		\item Inkrafttreten: 24.05.2016
+            		\item muss seit dem 25.05.2018 angewendet werden
+            	\end{itemize}
+            \end{frame}
+        
+
+        \subsection{Daten mit erhöhtem Schutz}
+            \begin{frame}{Rechtsgrundlagen und Rechte}{Daten mit erhöhtem Schutz}
+                \begin{itemize}
+                    \item Art.9 DSGVO
+                \end{itemize}
+                \vspace{0.25cm}
+                \centerline{\begin{minipage}{340pt}
+                        \begin{tabular}{| l | l |}
+                        \hline
+                        \textbf{Geschützte Daten} & \textbf{Ausnahmen}\\
+                        \hline
+                        \tabitem rassische und ethnische Herkunft       & \tabitem  durch ausdrückliche Zustimmung\\
+                        \tabitem politische Meinungen                   & \tabspace (bis auf Ausnahmen)\\
+                        \tabitem religiöse/philosophische Überzeugungen & \tabitem  zur Ausübung von \\
+                        \tabitem Gewerkschaftszugehörigkeit             & \tabspace Rechten und Pflichten\\
+                        \tabitem Gesundheit                             & \tabspace für lebenswichtige Interessen,\\
+                        \tabitem sexuelle Orientierung                  & \tabspace wenn Person unfähig\\
+                                                                        & \tabitem  für Daten, die offensichtlich sind\\
+                                                                        & \tabitem  für Gesundheitsvorsorge\\
+                        \hline
+                    \end{tabular}    
+                \end{minipage}}
+            \end{frame}
+
+
+        \subsection{Widerrufsrecht}
+            \begin{frame}{Rechtsgrundlagen und Rechte}{Widerrufsrecht}
+                \begin{itemize}
+                    \item Art.21 DSGVO
+            		\item Recht auf Widerspruch, wenn Daten zur Direktwerbung genutzt werden
+            		\item wenn widersprochen wird, dürfen Daten nicht mehr verarbeitet werden
+            		\item Person muss spätestens zum Zeitpunkt der ersten Kommunikation hingewiesen werden
+            	\end{itemize}
+            \end{frame}
+
+
+        \subsection{Recht auf Einsicht}
+            \begin{frame}{Rechtsgrundlagen und Rechte}{Auskunftsrecht (Recht auf Einsicht)}
+                \begin{itemize}
+                \item Art.15 DSGVO
+            		\item Verarbeitungszwecke
+            		\item Kategorien der verarbeiteten Daten
+            		\item (Kriterien für) Speicherdauer
+            		\item Empfänger der Daten
+            		\item Kopie der zu verarbeitenden Daten muss gegeben werden
+            	\end{itemize}
+            \end{frame}
+
+
+        \subsection{Löschungsrecht}
+            \begin{frame}{Rechtsgrundlagen und Rechte}{Löschungsrecht}
+                \begin{itemize}
+                    \item auch Recht auf Vergessen genannt 
+                    \item Art. 17 DSGVO
+                    \item Gründe zur Löschung von Daten
+                    \begin{itemize}
+                        \item Daten sind nicht mehr notwendig
+                        \item Person widerruft Einwilligung
+                        \item unrechtmäßige Verarbeitung der Daten
+                        \item nicht gültig zur Ausübung der freien Meinungsäußerung
+                        \item zur Erfüllung einer rechtlichen Verpflichtung
+                    \end{itemize}
+                \end{itemize}
+            \end{frame}
+
+
+        \subsection{Berichtigungsrecht}
+            \begin{frame}{Rechtsgrundlagen und Rechte}{Berichtigungsrecht}
+                \begin{itemize}
+                    \item Art. 16 DSGVO
+                    \item Personen dürfen jederzeit die Berichtigung/ die Vervollständigung von falschen/fehlenden Daten anfordern
+                \end{itemize}
+        \end{frame}
+
+
+
+    \section{Skandale}
+        \subsection{Google Street View}
+            \begin{frame}{Skandale}{Google Street View}
+                \begin{itemize}
+            		\item Mai 2007 führte Google \enquote{Street View} ein
+            		\item Google hat seitdem immer wieder Beschwerden von Datenschützern
+            		\item zeigt bspw. Menschen die Erotik-Geschäfte betraten oder verließen
+            		\item Gegenmaßnahme: Gesichter und Kennzeichen mit Unschärfe-Effekte unkenntlich zu machen
+            	\end{itemize}
+            \end{frame}
+
+
+        \subsection{Facebook und Cambridge Analytica}
+            \begin{frame}{Skandale}{Facebook und Cambridge Analytica}
+                \begin{itemize}
+            		\item hat bewiesen: Facebook kann Daten nicht schützen
+            		\begin{itemize}
+            		    \item Warum:
+            		    \begin{itemize}
+            		        \item[--] App-Entwickler dürfen persönlichen Daten von Nutzern zu erfassen
+            		        \item[--] Daten von Freunden können auch ausgelesen werden
+            		        \item[--] zehntausende derartiger Fälle dadurch denkbar
+            		    \end{itemize}
+            		\end{itemize}
+            		\vspace{0.25cm}
+            		\item[ ]Was hat das nun mit Cambridge Analytica zu tun?
+            		\begin{itemize}
+            		    \item  Aleksandr Kogan entwickelte Persönlichkeitstest  "thisisyourdigitallife"
+            		    \item 270 000 zu meist US-amerikanische Nutzer machten mit
+            		    \item erfasste zusätzlich Daten von Millionen ihrer ahnungslosen Freunde
+            		    \item gab Daten an Cambridge Analytica weiter
+            		    \item Facebook wusste Bescheid,\\kümmerte sich nicht darum Daten löschen zu lassen
+            		    \item Resultat: 500.000£-Geldstrafe für Facebook
+            		\end{itemize}
+            	\end{itemize}
+            \end{frame}
+
+
+        \subsection{Sonys Spyware CDs}
+            \begin{frame}{Skandale}{Sonys Spyware CDs}
+                \begin{itemize}
+            		\item Anti-Piraterie-Maßnahme "XCP"
+            		\item beim Abspielen einer Sony CD installierte XCP heimlich eine versteckte Rootkit-Software
+            		\item Software sendet Informationen von CD und der IP vom Rechner an Sony
+            		\item Spyware machte den Rechner anfälliger gegen Trojaner und Viren
+            		\item Sammelklagen gingen gegen den Konzern ein
+            		\item Kartellbehörde entschied das Sony jedem 100€ Schadensersatzzahlung zukommen soll
+            	\end{itemize}
+            \end{frame}
+
+
+
+    \section{Quellen}
+        \begin{frame}{Quellen}{}
+            \begin{itemize}
+                \item \href{https://dsgvo-gesetz.de/}{https://dsgvo-gesetz.de/}
+                \item \href{https://www.gesetze-im-internet.de/tmg/}{https://www.gesetze-im-internet.de/tmg/}
+                \item \href{https://www.gesetze-im-internet.de/bdsg/}{https://www.gesetze-im-internet.de/bdsg/}
+                \item \href{https://www.wbs-law.de/it-recht/datenschutzrecht/was-ist-datenschutz/}{https://www.wbs-law.de/it-recht/datenschutzrecht/was-ist-datenschutz/}
+                \item \href{https://www.juraforum.de/lexikon/natuerliche-person}{https://www.juraforum.de/lexikon/natuerliche-person}
+                \item \href{https://www.juraforum.de/lexikon/juristische-person}{https://www.juraforum.de/lexikon/juristische-person}
+                \item \href{https://www.juraforum.de/lexikon/koerperschafthttps://www.juraforum.de/lexikon/koerperschaft}{https://www.juraforum.de/lexikon/koerperschaft}
+                \item \href{https://www.itsystemkaufmann.de/natuerliche-und-juristische-personen-der-unterschied/}{https://www.itsystemkaufmann.de/natuerliche-und-juristische-personen-der-unterschied/}
+                \item \href{https://datenschutz-agentur.de/alle-informationen-ueber-eine-bestimmte-oder-bestimmbare-natuerliche-person-personenbezogen/}{https://datenschutz-agentur.de/alle-informationen-ueber-eine-bestimmte-oder-bestimmbare-natuerliche-person-personenbezogen/}
+                %\item \href{}{}
+            \end{itemize}
+        \end{frame}
+
+
+        \begin{frame}[plain]
+            \begin{center}
+                \huge\textbf{Vielen Dank für Ihre Aufmerksamkeit!}
+            \end{center}
+        \end{frame}
+    
+\end{document}
